@@ -1,0 +1,79 @@
+﻿@model List<OCOP.ViewModel.Catalog.HoiDongs.HoiDongViewModel>
+@using OCOP.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{ 
+    <script src="~/js-controller/hoidong-js-controller.js"></script>
+}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách hội đồng</h4>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th class="table-plus">Tên hội đồng</th>
+                    <th>Tên hồ sơ</th>
+                    <th>Cấp bậc</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày kết thúc dự kiến</th>
+                    <th>Trạng thái</th>
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="table-plus">@item.TenHoiDong</td>
+                        <td>
+                        <a href="@Url.Action("ViewHoSo","HoSo",new { hoSoId=item.HoSoId })">@item.TenHoSo</a>
+                        </td>
+                        <td>@item.CapBac</td>
+                        <td>@item.NgayTao.ToShortDateString()</td>
+                        <td>@item.NgayKetThuc.ToShortDateString()</td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoiDong_DangHoanThien)
+                            {
+                                <span>Đang hoàn thiện</span>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoiDong_DangDanhGia)
+                            {
+                                <span>Đang đánh giá</span>
+                            }
+                            else
+                            {
+                                <span>Hoàn thành</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoiDong_DangHoanThien)
+                            {
+                                <div class="table-actions">
+                                    <a href="@Url.Action("AddThanhVien","HoiDong",new { hoiDongId=item.HoiDongId })" data-color="#265ed7">
+                                        Thêm thành viên
+                                    </a>
+                                    |
+                                    <a href="#" class="item-trangthai-click" data-id="@item.HoiDongId" data-color="#265ed7">Bắt đầu đánh giá</a>
+                                </div>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoiDong_DangDanhGia || item.TrangThai==SystemConstants.HoiDong_HoanThanh)
+                            {
+                                <div class="table-actions">
+                                    <a href="@Url.Action("ViewHoiDong","HoiDong",new { hoiDongId=item.HoiDongId })" data-color="#265ed7">
+                                        Xem chi tiết
+                                    </a>                                  
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

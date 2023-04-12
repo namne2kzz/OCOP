@@ -1,0 +1,245 @@
+﻿@{   
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chứng chỉ OCOP</title>
+    <style>
+        .certificate-container {
+            margin: 50px 250px;
+            border: 20px solid #f65b4d;
+            width: 60%;
+        }
+
+        .certificate-border {
+            margin: 10px;
+            border: 5px solid #f65b4d;
+            background-image: url('../src/imagefortemplate/background-image.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            align-items: center;
+            padding: 5px 0px;
+        }
+
+        img.certificate-armorial {
+            width: 120px;
+        }
+
+        .certificate-national-slogan {
+            margin: 0px 0px 35px 0px;
+            text-align: center;
+            line-height: 5px;
+        }
+
+        h3.certificate-national-brand {
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            word-spacing: 1px;
+        }
+
+        h4.certificate-slogan {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        hr.slogan-underline {
+            width: 240px;
+            color: #000;
+        }
+
+        .certificate-title-container {
+            margin: 50px 0px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            line-height: 25px;
+        }
+
+        h2.certificate-committee-name {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        h1.certificate-name {
+            font-size: 42px;
+            font-weight: 600;
+            color: red;
+        }
+
+        img.ocop-logo {
+            margin: 0px 220px;
+        }
+
+        span.organization-name {
+            color: #f65b4d;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+        }
+
+        span.provinece {
+            color: #1a7131;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+        }
+
+        .certificate-reviews {
+            text-align: center;
+            margin: 10px 0px;
+        }
+
+        .product-information {
+            text-align: left;
+            padding: 0px 40px;
+            line-height: 10px;
+            margin-bottom: 35px;
+        }
+
+        p.product-name {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+        }
+
+        p.unit {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+        }
+
+        p.company-address {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+        }
+
+        .confirm-content-container {
+            margin: 30px;
+            text-align: center;
+            line-height: 5px;
+        }
+
+        p.confirm-content {
+            font-size: 20px;
+        }
+
+        h1.confirm-start {
+            font-size: 30px;
+            color: red;
+            font-weight: 600;
+        }
+
+        .certificate-signature-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .certificate-signature-item {
+            text-align: center;
+        }
+
+        p.certificate-creation-time {
+            font-size: 18px;
+        }
+
+        span.position-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .decision-number-item {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .decision-contain {
+            position: absolute;
+            padding: 0px 30px;
+            bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+            font-size: 14px;
+            color: #48484a;
+            font-weight: 600;
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#" id="exportPdf"><h4> In chứng chỉ</h4> </a>
+
+    <div id="certificate" class="certificate-container">
+        <div class="certificate-border">
+            <img src="~/src/imagefortemplate/quochuy.png" alt="" class="certificate-armorial">
+            <div class="certificate-national-slogan">
+                <h3 class="certificate-national-brand">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3>
+                <h4 class="certificate-slogan">Độc lập - Tự do - Hạnh phúc</h4>
+                <hr class="slogan-underline">
+            </div>
+            <div class="certificate-title-container">
+                <h2 class="certificate-committee-name">ỦY BAN NHÂN DÂN TỈNH BẠC LIÊU</h2>
+                <h1 class="certificate-name">GIẤY CHỨNG NHẬN</h1>
+                <img src="~/src/imagefortemplate/ocop-logo.png" alt="image" class="ocop-logo" width="280px"><br>
+                <span class="organization-name">ONE COMMUNE ONE PRODUCT OF VIETNAM</span><br>
+                <span class="provinece">BAC LIEU PROVINCE</span>
+                <div class="certificate-reviews">
+                    <img src="~/src/imagefortemplate/star.png" alt="image" width="90px">
+                    <img src="~/src/imagefortemplate/star.png" alt="image" width="90px">
+                    <img src="~/src/imagefortemplate/star.png" alt="image" width="90px">
+                    <img src="~/src/imagefortemplate/star.png" alt="image" width="90px">
+                </div>
+            </div>
+            <div class="product-information">
+                <p class="product-name">Sản phẩm: [Tên sản phẩm] </p>
+                <p class="unit">Đơn vị: [Tên đơn vị sản xuất]</p>
+                <p class="company-address">Địa chỉ: [Địa chỉ]</p>
+            </div>
+            <div class="confirm-content-container">
+                <p class="confirm-content">Đã tham gia đánh giá, phân hạng sản phẩm</p>
+                <p class="confirm-content">Chương trình Mỗi Xã một sản phẩm OCOP năm 2023</p>
+            </div>
+            <h1 class="confirm-start">ĐẠT HẠNG SẢN PHẨM: 4 SAO</h1>
+            <div class="certificate-signature-container">
+                <div class="decision-number-item">
+                    <div class="decision-contain">
+                        <p class="decision-number">
+                            Quyết định số: 921/QD-UBND<br>
+                            ngày 20 tháng 7 năm 2023<br>
+                            Có giá trị 36 tháng kể từ ngày cấp.
+                        </p>
+                    </div>
+                </div>
+                <div class="certificate-signature-item">
+                    <p class="certificate-creation-time"><i>Bạc Liêu, ngày ... tháng ... năm 2020</i></p>
+                    <span class="position-name">TM. UBND TỈNH</span><br>
+                    <img src="~/src/imagefortemplate/signature.png" alt="" class="signature-image" width="400">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let certificate = document.getElementById("certificate");
+        let exportPDF = document.getElementById("exportPdf");
+        exportPDF.onclick = (e) => html2pdf(certificate);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+﻿@model OCOP.ViewModel.System.AppUsers.ThanhVienCreateRequest
+@{
+    ViewData["Title"] = "CreateThanhVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js-controller/appuser-js-controller.js"></script>
+}
+ 
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-blue h4">Thêm mới thành viên</h4><br/>
+            </div>
+        </div>
+        <form asp-action="CreateThanhVien" asp-controller="AppUser" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Tên nhân viên</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="Ten"
+                           type="text"
+                           placeholder="Tên nhân viên" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="Ten" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Mã nhân viên</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="MaNhanVien"
+                           placeholder="Mã nhân viên"
+                           type="text" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="MaNhanVien" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Đơn vị công tác</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control"
+                           placeholder="Đơn vị công tác" asp-for="DonViCongTac"
+                           type="text" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="DonViCongTac" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Cấp bậc</label>
+                <div class="col-sm-12 col-md-10">
+                    <select asp-for="MaCapBac" class="custom-select" asp-items="@ViewBag.ListCapBac">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="Email" placeholder="Email"
+                           type="email" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Số điện thoại</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="PhoneNumber"
+                           placeholder="Số điện thoại"
+                           type="tel" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Tên đăng nhập</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" placeholder="Tên đăng nhập" type="text" asp-for="UserName" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-datetime-local-input"
+                       class="col-sm-12 col-md-2 col-form-label">Mật khẩu</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="Password"
+                           placeholder="******"
+                           type="password" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Nhập lại mật khẩu</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" asp-for="ConfirmPassword"
+                           placeholder="******"
+                           type="password" />
+                    <div class="form-control-feedback" style="color:red;">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Ảnh đại diện</label>
+                <div class="col-sm-12 col-md-10">
+                    <img src="~/src/images/backgroundUpload.jpg" id="image" width="150" /> <br /><br/>
+                    <input asp-for="ThumbnailImage" type="file" id="file"/>
+                </div>
+            </div>
+
+            <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Đăng kí thành viên</button>
+            <a class="btn btn-dark" href="@Url.Action("Index", "AppUser")" role="button" style="margin-bottom: 50px;">Trở về</a>
+        </form>
+    </div>
+   
+

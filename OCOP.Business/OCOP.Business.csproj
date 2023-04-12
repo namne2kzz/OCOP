@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.26.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OCOP.Data\OCOP.Data.csproj" />
+    <ProjectReference Include="..\OCOP.Utility\OCOP.Utility.csproj" />
+    <ProjectReference Include="..\OCOP.ViewModel\OCOP.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

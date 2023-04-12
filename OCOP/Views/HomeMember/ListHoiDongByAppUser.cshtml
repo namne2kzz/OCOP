@@ -1,0 +1,72 @@
+﻿@model List<OCOP.ViewModel.Catalog.HoiDongs.HoiDongViewModel>
+@using OCOP.Utility
+@{
+    ViewData["Title"] = "ListHoiDongByAppUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách hội đồng tham gia</h4>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th class="table-plus">Tên hội đồng</th>
+                    <th>Tên hồ sơ</th>
+                    <th>Cấp bậc</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày kết thúc dự kiến</th>
+                    <th>Trạng thái</th>
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="table-plus">@item.TenHoiDong</td>
+                        <td>@item.TenHoSo</td>
+                        <td>@item.CapBac</td>
+                        <td>@item.NgayTao.ToShortDateString()</td>
+                        <td>@item.NgayKetThuc.ToShortDateString()</td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoiDong_DangHoanThien)
+                            {
+                                <span>Đang hoàn thiện</span>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoiDong_DangDanhGia)
+                            {
+                                <span>Đang đánh giá</span>
+                            }
+                            else
+                            {
+                                <span>Hoàn thành</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoiDong_DangDanhGia)
+                            {
+                                <div class="table-actions">
+                                    <a href="@Url.Action("ViewHoSo","HomeMember",new { hoSoId=item.HoSoId })" data-color="#265ed7">
+                                        Xem hồ sơ
+                                    </a>
+                                </div>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoiDong_HoanThanh)
+                            {
+                                <span>Đã đánh giá hồ sơ</span>
+                            }
+                            else
+                            {
+                                <span>Đang chờ hội đồng</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

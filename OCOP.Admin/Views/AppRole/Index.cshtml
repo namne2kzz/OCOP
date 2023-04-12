@@ -1,0 +1,45 @@
+﻿@model List<OCOP.ViewModel.System.Roles.RoleViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{ 
+    <script src="~/js-controller/approle-js-controller.js"></script>
+}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách quyền</h4><br />
+        <a class="btn btn-dark" href="@Url.Action("CreateRole", "AppRole")" role="button">Tạo mới</a>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>                    
+                    <th class="table-plus">Tên quyền</th>
+                    <th>Tên thường dùng</th>
+                    <th>Mô tả</th>                                      
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>                      
+                        <td class="table-plus">@item.Name</td>
+                        <td>@item.NormalizedName</td>
+                        <td>@item.Description</td>                                           
+                        <td>
+                            <div class="table-actions">                              
+                                <a class="item-delete-click" href="#" data-id="@item.RoleId" data-color="#e95959" title="Xóa quyền">
+                                    <i class="icon-copy dw dw-delete-3"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

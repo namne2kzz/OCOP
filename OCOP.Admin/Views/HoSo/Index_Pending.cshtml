@@ -1,0 +1,64 @@
+﻿@model List<OCOP.ViewModel.Catalog.HoSos.HoSoViewModel>
+@using OCOP.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách hồ sơ đang chờ duyệt</h4>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th class="table-plus">Tên hồ sơ</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Phân nhóm</th>
+                    <th>Ngày tạo</th>                  
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="table-plus">@item.TenHoSo</td>
+                        <td>@item.TenSanPham</td>
+                        <td>@item.PhanNhom</td>
+                        <td>@item.NgayTao.ToShortDateString()</td>                       
+                        <td>
+                            <div class="table-actions">
+                                @if (!item.IsExistHoiDongHuyen && item.TrangThai == SystemConstants.HoSo_TrangThai_Pending_Huyen)
+                                {
+                                    <a href="@Url.Action("CreateHoiDong", "HoiDong", new { hoSoId = item.HoSoId, maCapBac = SystemConstants.MaCapHuyen })" data-color="#265ed7">
+                                        Tạo hội đồng cấp huyện
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span>Đã tạo hội đồng cấp huyện | </span>
+                                }
+                                @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Pending_Tinh)
+                                {
+                                    @if (!item.IsExistHoiDongTinh)
+                                    {
+                                        <a href="@Url.Action("CreateHoiDong","HoiDong",new { hoSoId=item.HoSoId, maCapBac=SystemConstants.MaCapTinh })" data-color="#265ed7">
+                                            Tạo hội đồng cấp tỉnh
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span>Đã tạo hội đồng cấp tỉnh</span>
+                                    }
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

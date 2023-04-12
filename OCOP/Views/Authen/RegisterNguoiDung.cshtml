@@ -1,0 +1,278 @@
+﻿@model OCOP.ViewModel.System.AppUsers.NguoiDungCreateRequest
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "Đăng kí người dùng";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8" />
+    <title>Đăng kí người dùng</title>
+
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="~/vendors/images/apple-touch-icon.png" />
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="~/vendors/images/favicon-32x32.png" />
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="~/vendors/images/favicon-16x16.png" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="~/vendors/styles/core.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="~/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/vendors/styles/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-GBZ3SGGX85");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+    </script>
+    <!-- End Google Tag Manager -->
+</head>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="login.html">
+                    <img src="~/vendors/images/ocopLogo.png" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <h2 class="text-center text-primary">Register</h2>
+            </div>
+            <form asp-action="RegisterNguoiDung" asp-controller="Authen" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="TenNhaSanXuat" type="text"
+                                   placeholder="Tên nhà sản xuất *" />&nbsp;
+                            <div class="form-control-feedback">
+                                <span asp-validation-for="TenNhaSanXuat" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="TenNguoiDaiDien"
+                                   placeholder="Tên người đại diện *"
+                                   type="text" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="TenNguoiDaiDien" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control "
+                                   placeholder="Số đăng kí kinh doanh *" asp-for="SoDangKyKinhDoanh"
+                                   type="text" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="SoDangKyKinhDoanh" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="Email" placeholder="Email *"
+                                   type="email" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="PhoneNumber"
+                                   placeholder="Số điện thoại *"
+                                   type="tel" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" placeholder="Tên đăng nhập *" type="text" asp-for="UserName" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="Password" placeholder="******" type="password" />&nbsp;
+
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" asp-for="ConfirmPassword"
+                                   placeholder="******"
+                                   type="password" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6" style="padding-top:30px;">
+                        <div class="input-group custom">
+                            <select id="sllMoHinhSX" asp-for="MoHinhSXId" class="custom-select " asp-items="@ViewBag.ListMoHinhSX">
+                                <option value="" selected="selected" disabled="disabled">--- Chọn Mô hình sản xuất *---</option>
+                            </select>
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="MoHinhSXId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <select id="sllHuyen" class="custom-select" asp-items="@ViewBag.ListHuyen">
+                                <option value="" selected="selected" disabled="disabled">--- Chọn huyện *---</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group custom">
+                            <select id="sllXa" asp-for="XaId" class="custom-select" asp-items="@ViewBag.ListXa">
+                                <option value="" selected="selected" disabled="disabled">--- Chọn xã *---</option>
+                            </select>
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="XaId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input class="form-control" placeholder="Địa chỉ chi tiết *" type="text" asp-for="DiaChiChiTiet" />&nbsp;
+                            <div class="form-control-feedback" style="color:red;">
+                                <span asp-validation-for="DiaChiChiTiet" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ảnh đại diện *</label>
+                            <div class="col-sm-12 col-md-10">
+                                <img src="http://localhost:5000/src/images/backgroundUpload.jpg" id="image" width="150" /> <br /><br />
+                                <input type="file" asp-for="ThumbnailImage" id="file" />
+                                <div class="form-control-feedback" style="color:red;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"></div>
+                        </div>
+                        <button class="btn btn-primary" type="submit" style="margin-bottom: 50px;">Đăng kí người dùng</button>
+                        <a class="btn btn-primary" href="@Url.Action("Index", "Authen")" role="button" style="margin-bottom: 50px;">Đã có tài khoản</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- js -->
+    <script src="~/src/scripts/jquery.min.js"></script>
+    <script src="~/vendors/scripts/core.js"></script>
+    <script src="~/vendors/scripts/script.min.js"></script>
+    <script src="~/vendors/scripts/process.js"></script>
+    <script src="~/vendors/scripts/layout-settings.js"></script>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+                height="0"
+                width="0"
+                style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script>
+        let register = {
+            init: function () {
+                register.registerEvent();
+            },
+            registerEvent: function () {
+                /*Review Image Before Upload*/
+                $('#file').on('change', function () {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#image').src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                });
+
+                $("#sllHuyen").off('change').on('change', function () {
+                    var id = $(this).val();
+                    if (id != '') {
+                        register.loadXa(id)
+                    }
+                    else {
+                        $('#sllXa').html('');
+                    }
+                });
+            },
+            loadXa: function (id) {
+                $.ajax({
+                    url: 'http://localhost:5001/Authen/LoadXaByHuyen',
+                    data: { huyenId: id },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status == true) {
+                            var html = '<option value="" selected="true" disabled="disabled">---Chọn Xã ---</option>';
+                            var data = res.data;
+                            $.each(data, function (i, item) {
+                                html += '<option value="' + item.xaId + '">' + item.tenXa + '</option>'
+                            })
+                            $('#sllXa').html(html);
+                        }
+                    }
+                })
+            }
+        }
+        register.init();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+﻿@model List<OCOP.ViewModel.System.AppUsers.NguoiDungViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{ 
+    <script src="~/js-controller/nguoidung-js-controller.js"></script>
+}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách người dùng</h4><br/>
+        <a class="btn btn-dark" href="@Url.Action("CreateNguoiDung", "NguoiDung")" role="button">Tạo mới</a>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th class="table-plus">Tên nhà sản xuất</th>
+                    <th>Mô hình sản xuất</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Trạng thái</th>
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><img src="http://localhost:5001/user-content/@item.ImagePath" width="100" /></td>
+                        <td class="table-plus">@item.TenNhaSanXuat</td>
+                        <td>@item.TenMoHinhSX</td>
+                        <td>@item.DiaChiChiTiet</td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.UserName</td>
+                        <td>
+                            <a class="item-trangthai-click" href="#" data-id="@item.AppUserId">@(item.TrangThai?"Hoạt động":"Khóa")</a>
+                        </td>
+                        <td>
+                            <div class="table-actions">
+                                <a href="@Url.Action("UpdateNguoiDung","NguoiDung",new { appUserId=item.AppUserId })" data-color="#265ed7" title="Cập nhật">
+                                    <i class="icon-copy dw dw-edit2"></i>
+                                </a>
+                                @*<a href="@Url.Action("ViewNguoiDung","NguoiDung",new { appUserId=item.AppUserId })" data-color="#265ed7" title="Chi tiết">
+                                    <i class="icon-copy bi bi-file-person-fill"></i>
+                                </a>*@
+                                <a class="item-delete-click" href="#" data-id="@item.AppUserId" data-color="#e95959" title="Xóa">
+                                    <i class="icon-copy dw dw-delete-3"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

@@ -1,0 +1,123 @@
+﻿@model OCOP.ViewModel.System.AppUsers.NguoiDungUpdateRequest
+@{
+    ViewData["Title"] = "UpdateNguoiDung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js-controller/nguoidung-js-controller.js"></script>
+}
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Cập nhật người dùng</h4><br />
+        </div>
+    </div>
+    <form asp-action="UpdateNguoiDung" asp-controller="NguoiDung" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="AppUserId" />
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên nhà sản xuất</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TenNhaSanXuat"
+                       type="text"
+                       placeholder="Tên nhà sản xuất" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="TenNhaSanXuat" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên người đại diện</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TenNguoiDaiDien"
+                       placeholder="Tên người đại diện"
+                       type="text" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="TenNguoiDaiDien" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Số đăng kí kinh doanh</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control"
+                       placeholder="Số đăng kí kinh doanh" asp-for="SoDangKyKinhDoanh"
+                       type="text" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="SoDangKyKinhDoanh" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="Email"
+                       type="email" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Số điện thoại</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="PhoneNumber"
+                       placeholder="Số điện thoại"
+                       type="tel" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Mô hình sản xuất</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllMoHinhSX" asp-for="MoHinhSXId" class="custom-select" asp-items="@ViewBag.ListMoHinhSX">
+                    <option value="" selected="selected" disabled="disabled">---Chọn Mô hình sản xuất---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Huyện</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllHuyen" asp-for="HuyenId" class="custom-select" asp-items="@ViewBag.ListHuyen">
+                    <option value="" selected="selected" disabled="disabled">---Chọn huyện---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Xã</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllXa" asp-for="XaId" class="custom-select" asp-items="@ViewBag.ListXa">
+                    <option value="" selected="selected" disabled="disabled">---Chọn xã---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Địa chỉ chi tiết</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" placeholder="Địa chỉ chi tiết" type="text" asp-for="DiaChiChiTiet" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="DiaChiChiTiet" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Ảnh đại diện</label>
+            <div class="col-sm-12 col-md-10">
+                <img src="~/user-content/@Model.ImagePath" width="150" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Ảnh đại diện mới</label>
+            <div class="col-sm-12 col-md-10">
+                <img src="~/src/images/backgroundUpload.jpg" id="image" width="150" /> <br /><br />
+                <input type="file" name="uploadFile" id="file" />
+            </div>
+        </div>
+        <br />
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Cập nhật người dùng</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "NguoiDung")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+

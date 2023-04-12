@@ -1,0 +1,42 @@
+﻿@model OCOP.ViewModel.System.Roles.RoleCreateRequest
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Thêm mới quyền</h4><br />
+        </div>
+    </div>
+    <form asp-action="CreateRole" asp-controller="AppRole">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên quyền</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="Name"
+                       type="text"
+                       placeholder="Tên quyền" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Mô tả</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="Description"
+                       type="text"
+                       placeholder="Mô tả" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Lưu lại</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "AppRole")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+

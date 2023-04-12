@@ -1,0 +1,39 @@
+﻿@model OCOP.ViewModel.Catalog.HoiDongs.HoiDongCreateRequest
+@{
+    ViewData["Title"] = "CreateHoiDong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Tạo hội đồng cho hồ sơ</h4><br />
+        </div>
+    </div>
+    <form asp-action="CreateHoiDong" asp-controller="HoiDong" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="HoSoId" value="@ViewBag.HoSoId" />
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên hội đồng</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TenHoiDong"
+                       type="text"
+                       placeholder="Tên hội đồng" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="TenHoiDong" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Cấp bậc</label>
+            <div class="col-sm-12 col-md-10">
+                <select asp-for="MaCapBac" class="custom-select" asp-items="@ViewBag.ListCapBac">                 
+                </select>
+            </div>
+        </div>
+
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Tạo hội đồng</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "HoSo")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+

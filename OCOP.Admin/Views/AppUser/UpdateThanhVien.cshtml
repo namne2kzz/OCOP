@@ -1,0 +1,94 @@
+﻿@model OCOP.ViewModel.System.AppUsers.ThanhVienUpdateRequest
+@{
+    ViewData["Title"] = "UpdateThanhVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js-controller/appuser-js-controller.js"></script>
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Cập nhật thành viên</h4><br/>
+        </div>
+    </div>
+    <form asp-action="UpdateThanhVien" asp-controller="AppUser" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên nhân viên</label>
+            <input type="hidden" asp-for="AppUserid" />
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="Ten"
+                       type="text"
+                       placeholder="Tên nhân viên" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="Ten" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Mã nhân viên</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="MaNhanVien"
+                       placeholder="Mã nhân viên"
+                       type="text" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="MaNhanVien" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Đơn vị công tác</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control"
+                       placeholder="Đơn vị công tác" asp-for="DonViCongTac"
+                       type="text" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="DonViCongTac" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="Email"
+                       type="email" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Số điện thoại</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="PhoneNumber"
+                       type="number" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Ảnh đại diện</label>
+            <div class="col-sm-12 col-md-10">
+                <img src="~/user-content/@Model.ImagePath" width="150" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Ảnh đại diện mới</label>
+            <div class="col-sm-12 col-md-10">
+                <img src="~/src/images/backgroundUpload.jpg" id="image" width="150" /> <br /><br />
+                <input type="file" name="uploadFile" id="file" />
+            </div>
+           
+        </div>
+       
+
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Cập nhật thành viên</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "AppUser")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+
+
+

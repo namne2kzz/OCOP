@@ -1,0 +1,192 @@
+﻿@model OCOP.ViewModel.Catalog.HoSos.HoSoCreateRequest
+@{
+    ViewData["Title"] = "CreateHoSo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js-controller/homeclient-js-controller.js"></script>
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h3 class="text-blue h3">Thêm mới hồ sơ</h3><br />
+        </div>
+    </div>
+    <form asp-action="CreateHoSo" asp-controller="HomeClient" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên hồ sơ (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TenHoSo"
+                       type="text"
+                       placeholder="Tên hồ sơ" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="TenHoSo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên sản phẩm (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TenSanPham"
+                       placeholder="Tên sản phẩm"
+                       type="text" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="TenSanPham" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên ngành (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllNganh" class="custom-select" asp-items="@ViewBag.ListNganh">
+                    <option value="" selected="selected" disabled="disabled">---Chọn ngành---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tên nhóm (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllNhom" class="custom-select">
+                    <option value="" selected="selected" disabled="disabled">---Chọn nhóm---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Phân nhóm (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <select id="sllPhanNhom" asp-for="PhanNhomId" class="custom-select">
+                    <option value="" selected="selected" disabled="disabled">---Chọn phân nhóm---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy đăng ký ý tưởng sản phẩm (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayDangKyYTuongSanPham"
+                       type="file" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="GiayDangKyYTuongSanPham" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy phương án kế hoạch kinh doanh (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayPhuongAnKeHoachKinhDoanh"
+                       type="file" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="GiayPhuongAnKeHoachKinhDoanh" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy giới thiệu bộ máy tổ chức (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayGioiThieuBoMayToChuc"
+                       type="file" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="GiayGioiThieuBoMayToChuc" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy đăng ký kinh doanh (*)</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayDangKyKinhDoanh"
+                       type="file" />
+                <div class="form-control-feedback" style="color:red;">
+                    <span asp-validation-for="GiayDangKyKinhDoanh" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy đủ điều kiện sản xuất</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayDieuKienSanXuat"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy công bố chất lượng sản phẩm</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayCongBoChatLuong"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy công bố tiêu chuẩn sản phẩm</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayTieuChuanSanPham"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy kết quả chỉ tiêu an toàn thực phẩm</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayAnToanVSTP"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy chứng nhận sử hữu trí tuệ</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiaySoHuuTriTue"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy nguồn gốc nguyên liệu</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayNguonGocNguyenLieu"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy xác nhận kế hoạch bảo vệ môi trường</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayKeHoachBaoVeMT"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy quản lý chất lượng</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayQLChatLuong"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy hoạt động kế toán</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayHoatDongKeToan"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Giấy phát triển thị trường</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayPhatTrienThiTruong"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Câu chuyện sản phẩm</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="GiayCauChuyenSanPham"
+                       type="file" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Tài liệu thành tích</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" asp-for="TaiLieuThanhTich"
+                       type="file" />
+            </div>
+        </div>
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Đăng kí hồ sơ</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "HomeClient")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+

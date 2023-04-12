@@ -1,0 +1,62 @@
+﻿@model OCOP.ViewModel.Catalog.TieuChis.TieuChiMarkRequest
+@{
+    ViewData["Title"] = "MarkHoSo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hoSo = (OCOP.ViewModel.Catalog.HoSos.HoSoViewModel)ViewBag.HoSo;
+    var listTieuChi = (List<OCOP.ViewModel.Catalog.TieuChis.TieuChiViewModel>)ViewBag.ListTieuChi;
+}
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pull-left">
+                    <h3 class="text-blue h3">Đánh giá hồ sơ</h3><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pb-20">
+        <b style="font-size: 18px;">Tên hồ sơ: </b> @hoSo.TenHoSo<br />
+        <b style="font-size: 18px;">Tên sản phẩm: </b> @hoSo.TenSanPham<br />
+        <b style="font-size: 18px;">Phân nhóm: </b> @hoSo.PhanNhom<br />
+        <b style="font-size: 18px;">Ngày tạo: </b> @hoSo.NgayTao.ToShortDateString()<br />
+        <hr />
+        <h5>Danh sách tiêu chí đánh giá</h5>
+        <form asp-action="MarkHoSo" asp-controller="HomeMember" method="post">
+            <input type="hidden" asp-for="AppUserId" />
+            <input type="hidden" asp-for="HoiDongId" />
+            @for (var i = 0; i < listTieuChi.Count; i++)
+            {
+                <div class="pd-20">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Tên tiêu chí:</label>
+                        <div class="col-sm-12 col-md-10">
+                            @listTieuChi[i].TenTieuChi <span>(Điểm tối thiểu:  @listTieuChi[i].DiemCanDuoi - Điểm tối đa:  @listTieuChi[i].DiemCanTren)</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Tiêu chí đánh giá chi tiết:</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select class="custom-select" asp-for="@Model.DanhGias[i].Diem">
+                                @foreach (var subItem in listTieuChi[i].ListTieuChiChiTiet)
+                                {
+                                    <option value="@subItem.Diem"> @subItem.Mota - @subItem.Diem điểm </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Ghi chú thêm:</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea class="form-control" type="text" asp-for="@Model.DanhGias[i].GhiChu"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="@Model.DanhGias[i].TieuChiId" value="@listTieuChi[i].TieuChiId" />
+                </div>
+            }
+            <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Gửi đánh giá</button>
+            <a class="btn btn-dark" href="@Url.Action("ViewHoSo", "HomeMember",new {hoSoId=hoSo.HoSoId })" role="button" style="margin-bottom: 50px;">Trở về</a>
+
+        </form>
+    </div>
+</div>

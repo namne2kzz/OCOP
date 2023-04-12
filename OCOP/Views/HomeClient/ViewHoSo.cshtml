@@ -1,0 +1,226 @@
+﻿@model OCOP.ViewModel.Catalog.HoSos.HoSoDetailViewModel
+@{
+    ViewData["Title"] = "ViewHoSo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pull-left">
+                    <h3 class="text-blue h3">Hồ sơ chi tiết</h3><br />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="margin-right:20px">
+                    <a href="@Url.Action("ViewDanhGiaHuyen", "HomeClient", new {hoSoId=Model.HoSoId })">Xem đánh giá huyện</a><br />
+                    <a href="@Url.Action("ViewDanhGiaTinh", "HomeClient", new {hoSoId=Model.HoSoId })">Xem đánh giá tỉnh</a><br />
+                    <a href="@Url.Action("Certificate","HomeClient")">Xem chứng chỉ</a>                   
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="pb-20">
+        <b style="font-size: 18px;">Tên hồ sơ: </b> @Model.TenHoSo<br />
+        <b style="font-size:18px;">Tên sản phẩm:</b> @Model.TenSanPham<br />
+        <b style="font-size:18px;">Phân nhóm:</b> @Model.PhanNhom <br />
+        <b style="font-size:18px;">Ngày tạo:</b> @Model.NgayTao.ToShortDateString()<br /><br />
+
+        Giấy đăng ký ý tưởng sản phẩm - <a href="~/user-content/@Model.GiayDangKyYTuongSanPham" target="_blank" style="text-decoration: underline">Xem chi tiết</a><br />
+
+        Giấy phương án kế hoạch kinh doanh - <a href="~/user-content/@Model.GiayPhuongAnKeHoachKinhDoanh" target="_blank" style="text-decoration:underline">Xem chi tiết</a><br />
+
+        Giấy giới thiệu bộ máy tổ chức - <a href="~/user-content/@Model.GiayGioiThieuBoMayToChuc" target="_blank" style="text-decoration:underline">Xem chi tiết</a><br>
+
+        Giấy đăng ký kinh doanh - <a href="~/user-content/@Model.GiayDangKyKinhDoanh" target="_blank" style="text-decoration:underline;">Xem chi tiết</a><br />
+
+        Giấy đủ điều kiện sản xuất -
+        @if (Model.GiayDieuKienSanXuat != null)
+        {
+            <a href="~/user-content/@Model.GiayDieuKienSanXuat" target="_blank" style="text-decoration:underline;">Xem chi tiết</a><br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span><br />
+        }
+        Giấy công bố chất lượng sản phẩm -
+        @if (Model.GiayCongBoChatLuong != null)
+        {
+            <a href="~/user-content/@Model.GiayCongBoChatLuong" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span><br />
+        }
+        Giấy công bố tiêu chuẩn sản phẩm -
+        @if (Model.GiayCongBoChatLuong != null)
+        {
+            <a href="~/user-content/@Model.GiayCongBoChatLuong" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span><br />
+        }
+        Giấy kết quả kiểm tra chỉ tiêu an toàn thực phẩm -
+        @if (Model.GiayAnToanVSTP != null)
+        {
+            <a href="~/user-content/@Model.GiayAnToanVSTP" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy chứng nhận sở hữu trí tuệ -
+        @if (Model.GiaySoHuuTriTue != null)
+        {
+            <a href="~/user-content/@Model.GiaySoHuuTriTue" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy nguồn gốc nguyên liệu -
+        @if (Model.GiayNguonGocNguyenLieu != null)
+        {
+            <a href="~/user-content/@Model.GiayNguonGocNguyenLieu" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy xác nhận kế hoạch bảo vệ môi trường -
+        @if (Model.GiayKeHoachBaoVeMT != null)
+        {
+            <a href="~/user-content/@Model.GiayKeHoachBaoVeMT" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy chứng nhận quản lý chất lượng -
+        @if (Model.GiayQLChatLuong != null)
+        {
+            <a href="~/user-content/@Model.GiayQLChatLuong" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy hoạt động kế toán -
+        @if (Model.GiayHoatDongKeToan != null)
+        {
+            <a href="~/user-content/@Model.GiayHoatDongKeToan" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Giấy phát triển thị trường -
+        @if (Model.GiayPhatTrienThiTruong != null)
+        {
+            <a href="~/user-content/@Model.GiayPhatTrienThiTruong" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Câu chuyện sản phẩm -
+        @if (Model.GiayCauChuyenSanPham != null)
+        {
+            <a href="~/user-content/@Model.GiayCauChuyenSanPham" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        Tài liệu thành tích -
+        @if (Model.TaiLieuThanhTich != null)
+        {
+            <a href="~/user-content/@Model.TaiLieuThanhTich" target="_blank" style="text-decoration:underline;">Xem chi tiết</a>
+
+            <br />
+        }
+        else
+        {
+            <span>Không có tài liệu</span>
+
+            <br />
+        }
+        <h5 style="padding-block:20px">Thêm hình ảnh hoặc video minh chứng</h5>
+        <form asp-action="AddTapTinToHoSo" asp-controller="HomeClient" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="hoSoId" value="@Model.HoSoId" />
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Chọn tập tin</label>
+                <div class="col-sm-12 col-md-4">
+                    <input class="form-control" name="file"
+                           type="file" required />
+                </div>
+                <button class="btn btn-dark" type="submit">Thêm</button>
+
+            </div>
+        </form>
+        @if (Model.TapTinDinhKems.Count == 0)
+        {
+            <span>Không có tập tin đính kèm</span>
+        }
+        else
+        {
+            <h5>Danh sách tập tin đính kèm</h5>
+            @foreach (var item in Model.TapTinDinhKems)
+            {
+                if (item.Contains(".mp4"))
+                {
+                    <div style="padding-block:10px">
+                        <video height="600" width="800" controls="controls">
+                            <source src="~/user-content/@item" type="video/mp4" />
+                        </video>
+                    </div>
+                }
+                else
+                {
+                    <div style="padding-block:10px">
+                        <img height="600" width="800" src="~/user-content/@item" />
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

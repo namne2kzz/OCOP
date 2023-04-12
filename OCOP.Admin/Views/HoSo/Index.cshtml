@@ -1,0 +1,163 @@
+﻿@using OCOP.Utility
+@{
+    ViewData["Title"] = "Index_Doing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<OCOP.ViewModel.Catalog.HoSos.HoSoViewModel>
+
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Danh sách hồ sơ</h4>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th class="table-plus">Tên hồ sơ</th>
+                    <th>Ten sản phẩm</th>
+                    <th>Phân nhóm</th>
+                    <th>Ngày tạo</th>
+                    <th>Đánh giá huyện</th>
+                    <th>Đánh giá tỉnh</th>
+                    <th>Trạng thái</th>
+                    <th>Kết quả</th>
+                    <th class="datatable-nosort">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="table-plus">@item.TenHoSo</td>
+                        <td>@item.TenSanPham</td>
+                        <td>@item.PhanNhom</td>
+                        <td>@item.NgayTao.ToShortDateString()</td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail)
+                            {
+                                <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                            }
+                            else
+                            {
+                                @if (item.DanhGiaHuyen == 0)
+                                {
+                                    @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail_Huyen)
+                                    {
+                                        <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="icon-copy fa fa-hourglass-1" title="Chờ kết quả"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    @for (var i = 1; i <= item.DanhGiaHuyen; i++)
+                                    {
+                                        <i class="icon-copy fa fa-star" aria-hidden="true"></i>
+
+                                    }
+                                }
+                            }
+
+                        </td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail || item.TrangThai==SystemConstants.HoSo_TrangThai_Fail_Huyen)
+                            {
+                                <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                            }
+                            else
+                            {
+                                @if (item.DanhGiaTinh == 0)
+                                {
+                                    @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail_Tinh)
+                                    {
+                                        <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="icon-copy fa fa-hourglass-1" title="Chờ kết quả"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    @for (var i = 1; i <= item.DanhGiaTinh; i++)
+                                    {
+                                        <i class="icon-copy fa fa-star" aria-hidden="true"></i>
+
+                                    }}
+                            }
+                        </td>
+                        <td>
+                            @switch (item.TrangThai)
+                            {
+                                case SystemConstants.HoSo_TrangThai_Pending_Huyen:
+                                    <span>Chờ duyệt cấp huyện</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Doing_Huyen:
+                                    <span>Đang chấm cấp huyện</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Pending_Tinh:
+                                    <span>Chờ duyệt cấp tỉnh</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Doing_Tinh:
+                                    <span>Đang chấm cấp tỉnh</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Pass_Tinh:
+                                    <span>Đậu cấp tỉnh</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Fail_Huyen:
+                                    <span>Trượt cấp huyện</span>
+                                    break;
+                                case SystemConstants.HoSo_TrangThai_Fail_Tinh:
+                                    <span>Trượt cấp tỉnh</span>
+                                    break;
+                                default:
+                                    <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                                    break;
+                            }
+
+                        </td>
+                        <td>
+                            @if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail_Tinh)
+                            {
+                                @for (var i = 1; i <= item.DanhGiaHuyen; i++)
+                                {
+                                    <i class="icon-copy fa fa-star" aria-hidden="true"></i>
+                                } <span><br/> cấp huyện</span>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoSo_TrangThai_Pass_Tinh)
+                            {
+                                @for (var i = 1; i <= item.DanhGiaTinh; i++)
+                                {
+                                    <i class="icon-copy fa fa-star" aria-hidden="true"></i>
+                                } <span><br/> cấp tỉnh</span>
+
+                            }
+                            else if (item.TrangThai == SystemConstants.HoSo_TrangThai_Pending_Huyen || item.TrangThai == SystemConstants.HoSo_TrangThai_Doing_Huyen || item.TrangThai == SystemConstants.HoSo_TrangThai_Pending_Tinh || item.TrangThai == SystemConstants.HoSo_TrangThai_Doing_Tinh)
+                            {
+                                <i class="icon-copy fa fa-hourglass-1" title="Chờ kết quả"></i>
+                            }
+                            else if (item.TrangThai == SystemConstants.HoSo_TrangThai_Fail_Huyen || item.TrangThai == SystemConstants.HoSo_TrangThai_Fail)
+                            {
+                                <i class="icon-copy fa fa-close" aria-hidden="true" title="Trượt"></i>
+                            }
+                        </td>
+                        <td>
+                            <div class="table-actions">
+                                <a href="@Url.Action("ViewHoSo","HoSo",new { hoSoId=item.HoSoId })" data-color="#265ed7">
+                                    Xem hồ sơ
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

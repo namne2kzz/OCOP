@@ -1,0 +1,35 @@
+﻿@model OCOP.ViewModel.System.Roles.RoleAssignRequest 
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Gán quyền</h4><br/>
+        </div>
+    </div>
+    <form asp-action="AssignRole" asp-controller="AppRole">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        @for (var i = 0; i < Model.Roles.Count; i++)
+        {
+            <div class="form-group row" style="margin-left:10px;">
+
+                <input asp-for="Roles[i].Selected" type="checkbox" style="margin-right:10px;">                
+                @Model.Roles[i].Name
+
+                    <input type="hidden" asp-for="Roles[i].Id" />
+                    <input type="hidden" asp-for="Roles[i].Name" />
+
+            </div>
+
+        }
+
+       <br />
+        <button class="btn btn-dark" type="submit" style="margin-bottom: 50px;">Lưu lại</button>
+        <a class="btn btn-dark" href="@Url.Action("Index", "AppUser")" role="button" style="margin-bottom: 50px;">Trở về</a>
+    </form>
+</div>
+

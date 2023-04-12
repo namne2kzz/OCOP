@@ -1,0 +1,65 @@
+﻿@using OCOP.Utility
+@model List<OCOP.ViewModel.Catalog.HoiDongs.HoiDongDanhGiaViewModel>
+@{
+    ViewData["Title"] = "ViewDanhGiaTinh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hoiDong = (OCOP.ViewModel.Catalog.HoiDongs.HoiDongViewModel)ViewBag.HoiDong;
+
+}
+
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h3 class="text-blue h3">Chi tiết đánh giá cấp tỉnh</h3><br />
+        </div>
+    </div>
+    <b style="font-size:18px;">Tên hội đồng: </b> @hoiDong.TenHoiDong<br />
+    <b style="font-size:18px;">Tên hồ sơ: </b> @hoiDong.TenHoSo<br />
+    <b style="font-size:18px;">Ngày tạo: </b> @hoiDong.NgayTao.ToShortDateString()<br />
+    <b style="font-size:18px;">Ngày hoàn thành dự kiến: </b> @hoiDong.NgayKetThuc.ToShortDateString()<br />
+    <b style="font-size:18px;">Cấp bậc: </b> @hoiDong.CapBac<br />
+    <b style="font-size:18px;">Trang thái: </b>
+    @if (hoiDong.TrangThai == SystemConstants.HoiDong_DangHoanThien)
+    {
+        <span>Đang hoàn thiện</span>
+    }
+    else if (hoiDong.TrangThai == SystemConstants.HoiDong_DangDanhGia)
+    {
+        <span>Đang đánh giá</span>
+    }
+    else
+    {
+        <span>Hoàn thành</span>
+    }
+    <br /><br />
+    <h4>Danh sách tiêu chi và đánh giá</h4><br />
+    <div class="pb-20">
+        <table class="data-table table stripe hover">
+            <thead>
+                <tr>
+                    <th class="table-plus">Tên tiêu chí</th>
+                    <th>Điểm trung bình</th>
+                    <th>Ghi chú</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> @item.TenTieuChi</td>
+                        <td>@item.Diem/<strong>@item.DiemToiDa</strong></td>
+                        <td>
+                            @if (string.IsNullOrEmpty(item.GhiChu))
+                            {
+                                @Html.Raw(item.GhiChu.Replace("-AND-", "<br/>"))
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
